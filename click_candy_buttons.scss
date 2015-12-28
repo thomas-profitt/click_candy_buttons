@@ -1,0 +1,306 @@
+/*
+  Click Candy Buttons
+
+  Recapture the trashy, hyper-glossy Apple-knockoff web buttons of yore
+  in modern, cross-browser CSS
+
+  Thomas Profitt (tomdprofitt@gmail.com), 2015
+  Version 1.2.1
+  License: The Unlicense (included in source tree)
+*/
+
+// BEGIN click_candy class SCSS variables
+$cc_border                                :rgb(120,120,120);
+$cc_text                                  :white;
+$cc_text_shadow                           :rgba(10,10,10,0.8);
+$cc_default_background_color              :rgba(56, 62, 77, 1);
+$cc_default_border_color                  :rgba(9,19,35,1);
+$cc_background_gradient:
+  linear-gradient(
+    rgba(0, 0, 0, 0.45) 25%,
+    rgba(0,0,0,0.1),
+    rgba(255, 255, 255, 0.3) 83%,
+    rgba(255, 255, 255, 0.7)
+  );
+$cc_inset_gradient:
+  radial-gradient(
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.4) 40%,
+    rgba(0, 0, 0, 0.85) 85%
+  );
+$cc_gloss_gradient:
+  linear-gradient(
+    white,
+    rgba(255, 255, 255, 0.5) 25%,
+    rgba(255,255,255,0.15) 80%,
+    transparent
+  );
+$cc_background_gradient_flipped:
+  linear-gradient(
+    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.3),
+    rgba(0,0,0,0.1) 83%,
+    rgba(0, 0, 0, 0.45)
+  );
+
+// BEGIN Click Candy button ruleset
+button, .button, select,
+input[type=submit], input[type=reset], input[type=button] {
+
+  -webkit-appearance:none;
+  margin:1em auto;
+  padding:3px 1em;
+  position:relative;
+
+  background-color:$cc_default_background_color;
+  border-color:$cc_default_border_color;
+  border-radius:16px;
+  border-width:1px;
+  border-style:solid;
+
+  font-family:Lucida Sans, Helvetica Neue, Helvetica, Roboto, sans-serif;
+  line-height:8pt;
+  font-weight:800;
+  color: $cc_text;
+  text-shadow:-1px 1px 2px $cc_text_shadow;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+
+  /* We give other visual indications of focus */
+  outline:0 !important;
+  &::-moz-focus-inner {
+    border:0;
+  }
+
+/* ----------------------- Define or redefine colors here ------------------- */
+/* ------- It is reccomended that you use semantic names, not color names. -- */
+/* --------------------- These are merely predefined examples --------------- */
+
+  &.cc_red:not([disabled]) {
+    background-color:rgb(239, 23, 12);
+    border-color:rgb(229, 10, 36);
+  }
+
+  &.cc_blue:not([disabled]) {
+    background-color:rgb(8,126,213);
+    border-color:rgb(16, 10, 197);
+  }
+
+  &.cc_yellow:not([disabled]) {
+    background-color:rgb(255,182,0);
+    border-color:rgb(186,186,4);
+  }
+
+  &.cc_orange:not([disabled]) {
+    background-color:rgb(237,100,0);
+    border-color:rgb(186,88,4);
+  }
+
+  &.cc_purple:not([disabled]) {
+    background-color:rgb(105,0,152);
+    border-color:rgb(40,0,96);
+  }
+
+  &.cc_green:not([disabled]) {
+    background-color:rgb(0,165,37);
+    border-color:rgb(17,101,0);
+  }
+
+/* -------------------------------------------------------------------------- */
+
+  /* Using the :before psuedoclass to implement the background gradient
+   * is desirable because it allows transform effects to be applied to the
+   * background gradient.
+   */
+  /* Using the :after psuedoclass keeps extra markup out of the mix. */
+  &:before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:$cc_background_gradient;
+  }
+
+  &:after {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 3px;
+    right: 3px;
+    border-radius: 8px;
+    height: 65%;
+    width: calc(100% - 6px);
+    background-image:$cc_gloss_gradient;
+    background-repeat:no-repeat;
+  }
+
+/* -------------------------------------------------------------------------- */
+  &:not([disabled]) {
+
+  cursor: pointer;
+
+    &:focus, &:hover {
+        //transform:matrix3d(
+          //1.02, 0, 0, 0, 0, 1.02, 0, 0, 0, 0, 1, 0, 0, -2.04, 1, 1);
+        //transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -1, 1, 1);
+        //-webkit-transform:matrix3d(
+          //1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -1, 1, 1);
+
+        transform:translateY(-1px);
+        -webkit-transform:translateY(-1px);
+
+        filter:contrast(110%);
+
+        box-shadow: 0 0  5px rgba(0,0,0,0.4);
+        transition: all 0.05s ease;
+    }
+
+    &.cc_dark, &:active {
+      border-style:solid;
+      border-color:rgba(0,0,0,0.7);
+      &:active {
+        -webkit-filter:brightness(0.8);
+        filter:brightness(0.8);
+        &:after {
+          opacity:0.3;
+        }
+        box-shadow:none;
+      }
+      &:before {
+        background-image:$cc_inset_gradient
+      }
+      &:after {
+        opacity:0.6;
+      }
+    }
+
+    &:active {
+      transform:translateY(1px);
+      -webkit-transform:translateY(1px);
+    }
+
+  }
+
+/* -------------------------------------------------------------------------- */
+  &:disabled {
+    background-color:rgb(127,127,127);
+    color:rgb(64,64,64);
+    text-shadow:none;
+    text-decoration:line-through;
+    border-color:rgb(64,64,64);
+    border-style:solid;
+    &:after {
+      display:none;
+    }
+    &:before {
+      background-image:none;
+    }
+  }
+
+/* -------------------------------------------------------------------------- */
+  &.cc_flat_left {
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    &:after {
+      right:5px;
+      left:0;
+      width:calc(100% - 5px);
+      border-top-left-radius:0;
+      border-bottom-left-radius:0;
+    }
+  }
+
+  &.cc_flat_top {
+    border-top-right-radius:0;
+    border-top-left-radius:0;
+    &:after {
+      top:inherit;
+      bottom:0;
+      transform:rotate(180deg);
+      -webkit-transform:rotate(180deg);
+    }
+    &:before {
+      transform:rotate(180deg);
+      -webkit-transform:rotate(180deg);
+    }
+  }
+
+  &.cc_flat_bottom {
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+  }
+
+  &.cc_flat_right {
+    &:after {
+      left:5px;
+      right:0;
+      width:calc(100% - 5px);
+      border-top-right-radius:0;
+      border-bottom-right-radius:0;
+    }
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
+
+  &.cc_rectangle {
+    border-radius:0;
+    &:after {
+      border-radius:0;
+      left:0;
+      right:0;
+      width:100%;
+    }
+  }
+
+  &.cc_fixed_width {
+    width:9em;
+    font-size:65%;
+  }
+
+  &.cc_fixed_width_mini {
+    width:3em;
+    font-size:55%;
+    text-overflow:clip;
+    padding-left:3px;
+    padding-right:3px;
+  }
+
+  &.cc_subtle {
+    text-shadow:0px -1px 0px rgba(10,10,10,0.6);
+    &:after {
+      opacity:0.5;
+    }
+    &:before {
+      background-image:none;
+    }
+  }
+
+} // END Click Candy button ruleset
+
+
+/* --- Input Element Specific Rulesets -------------------------------------- */
+/* NOTE: Because these elements may have no content, the :after trick will
+ * not work.
+ * This is also why their background-image must be set; the psuedoclass
+ * background-image will not be visible, as it depends on the element allowing
+ * content.
+ */
+
+select, input[type=submit], input[type=reset], input[type=button] {
+  &:not([disabled]) {
+  /* Since we know we aren't going to get a :after here, let's at least
+   * flip the gradient so that it doesn't appear inset.
+   */
+    background-image:$cc_background_gradient_flipped;
+  }
+}
+
+select {
+  -webkit-appearance:menulist;
+}
+
