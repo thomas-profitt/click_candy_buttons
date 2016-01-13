@@ -1,0 +1,1 @@
+![A screenshot of part of the included index.html example page](example.png)
