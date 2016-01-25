@@ -5,37 +5,37 @@
   in modern, cross-browser CSS
 
   Thomas Profitt (tomdprofitt@gmail.com), 2015
-  Version 1.2.1
+  Version 2.0.0
   License: The Unlicense (included in source tree)
 */
 
-// BEGIN click_candy class SCSS variables
-$cc_border                                :rgb(120,120,120);
-$cc_text                                  :white;
-$cc_text_shadow                           :rgba(10,10,10,0.8);
-$cc_default_background_color              :rgba(56, 62, 77, 1);
-$cc_default_border_color                  :rgba(9,19,35,1);
-$cc_background_gradient:
+// BEGIN click-candy class SCSS variables
+$cc-border                                :rgb(120,120,120);
+$cc-text                                  :white;
+$cc-text-shadow                           :rgba(10,10,10,0.8);
+$cc-default-background-color              :rgba(56, 62, 77, 1);
+$cc-default-border-color                  :rgba(9,19,35,1);
+$cc-background-gradient:
   linear-gradient(
     rgba(0, 0, 0, 0.45) 25%,
     rgba(0,0,0,0.1),
     rgba(255, 255, 255, 0.3) 83%,
     rgba(255, 255, 255, 0.7)
   );
-$cc_inset_gradient:
+$cc-inset-gradient:
   radial-gradient(
     rgba(0,0,0,0.05),
     rgba(0,0,0,0.4) 40%,
     rgba(0, 0, 0, 0.85) 85%
   );
-$cc_gloss_gradient:
+$cc-gloss-gradient:
   linear-gradient(
     white,
     rgba(255, 255, 255, 0.5) 25%,
     rgba(255,255,255,0.15) 80%,
     transparent
   );
-$cc_background_gradient_flipped:
+$cc-background-gradient-flipped:
   linear-gradient(
     rgba(255, 255, 255, 0.7) 25%,
     rgba(255, 255, 255, 0.3),
@@ -52,8 +52,8 @@ input[type=submit], input[type=reset], input[type=button] {
   padding:3px 1em;
   position:relative;
 
-  background-color:$cc_default_background_color;
-  border-color:$cc_default_border_color;
+  background-color:$cc-default-background-color;
+  border-color:$cc-default-border-color;
   border-radius:16px;
   border-width:1px;
   border-style:solid;
@@ -61,8 +61,8 @@ input[type=submit], input[type=reset], input[type=button] {
   font-family:Lucida Sans, Helvetica Neue, Helvetica, Roboto, sans-serif;
   line-height:8pt;
   font-weight:800;
-  color: $cc_text;
-  text-shadow:-1px 1px 2px $cc_text_shadow;
+  color: $cc-text;
+  text-shadow:-1px 1px 2px $cc-text-shadow;
   text-align:center;
   vertical-align:middle;
   white-space:nowrap;
@@ -79,32 +79,32 @@ input[type=submit], input[type=reset], input[type=button] {
 /* ------- It is reccomended that you use semantic names, not color names. -- */
 /* --------------------- These are merely predefined examples --------------- */
 
-  &.cc_red:not([disabled]) {
+  &.cc-red:not([disabled]) {
     background-color:rgb(239, 23, 12);
     border-color:rgb(229, 10, 36);
   }
 
-  &.cc_blue:not([disabled]) {
+  &.cc-blue:not([disabled]) {
     background-color:rgb(8,126,213);
     border-color:rgb(16, 10, 197);
   }
 
-  &.cc_yellow:not([disabled]) {
+  &.cc-yellow:not([disabled]) {
     background-color:rgb(255,182,0);
     border-color:rgb(186,186,4);
   }
 
-  &.cc_orange:not([disabled]) {
+  &.cc-orange:not([disabled]) {
     background-color:rgb(237,100,0);
     border-color:rgb(186,88,4);
   }
 
-  &.cc_purple:not([disabled]) {
+  &.cc-purple:not([disabled]) {
     background-color:rgb(105,0,152);
     border-color:rgb(40,0,96);
   }
 
-  &.cc_green:not([disabled]) {
+  &.cc-green:not([disabled]) {
     background-color:rgb(0,165,37);
     border-color:rgb(17,101,0);
   }
@@ -123,7 +123,7 @@ input[type=submit], input[type=reset], input[type=button] {
     left:0;
     width:100%;
     height:100%;
-    background-image:$cc_background_gradient;
+    background-image:$cc-background-gradient;
   }
 
   &:after {
@@ -135,7 +135,7 @@ input[type=submit], input[type=reset], input[type=button] {
     border-radius: 8px;
     height: 65%;
     width: calc(100% - 6px);
-    background-image:$cc_gloss_gradient;
+    background-image:$cc-gloss-gradient;
     background-repeat:no-repeat;
   }
 
@@ -160,7 +160,7 @@ input[type=submit], input[type=reset], input[type=button] {
         transition: all 0.05s ease;
     }
 
-    &.cc_dark, &:active {
+    &.cc-dark, &:active {
       border-style:solid;
       border-color:rgba(0,0,0,0.7);
       &:active {
@@ -172,7 +172,7 @@ input[type=submit], input[type=reset], input[type=button] {
         box-shadow:none;
       }
       &:before {
-        background-image:$cc_inset_gradient
+        background-image:$cc-inset-gradient
       }
       &:after {
         opacity:0.6;
@@ -203,7 +203,7 @@ input[type=submit], input[type=reset], input[type=button] {
   }
 
 /* -------------------------------------------------------------------------- */
-  &.cc_flat_left {
+  &.cc-flat-left {
     border-top-left-radius:0;
     border-bottom-left-radius:0;
     &:after {
@@ -215,7 +215,7 @@ input[type=submit], input[type=reset], input[type=button] {
     }
   }
 
-  &.cc_flat_top {
+  &.cc-flat-top {
     border-top-right-radius:0;
     border-top-left-radius:0;
     &:after {
@@ -230,12 +230,12 @@ input[type=submit], input[type=reset], input[type=button] {
     }
   }
 
-  &.cc_flat_bottom {
+  &.cc-flat-bottom {
     border-bottom-right-radius:0;
     border-bottom-left-radius:0;
   }
 
-  &.cc_flat_right {
+  &.cc-flat-right {
     &:after {
       left:5px;
       right:0;
@@ -247,7 +247,7 @@ input[type=submit], input[type=reset], input[type=button] {
     border-bottom-right-radius:0;
   }
 
-  &.cc_rectangle {
+  &.cc-rectangle {
     border-radius:0;
     &:after {
       border-radius:0;
@@ -257,12 +257,12 @@ input[type=submit], input[type=reset], input[type=button] {
     }
   }
 
-  &.cc_fixed_width {
+  &.cc-fixed-width {
     width:9em;
     font-size:65%;
   }
 
-  &.cc_fixed_width_mini {
+  &.cc-fixed-width-mini {
     width:3em;
     font-size:55%;
     text-overflow:clip;
@@ -270,7 +270,7 @@ input[type=submit], input[type=reset], input[type=button] {
     padding-right:3px;
   }
 
-  &.cc_subtle {
+  &.cc-subtle {
     text-shadow:0px -1px 0px rgba(10,10,10,0.6);
     &:after {
       opacity:0.5;
@@ -296,7 +296,7 @@ select, input[type=submit], input[type=reset], input[type=button] {
   /* Since we know we aren't going to get a :after here, let's at least
    * flip the gradient so that it doesn't appear inset.
    */
-    background-image:$cc_background_gradient_flipped;
+    background-image:$cc-background-gradient-flipped;
   }
 }
 
